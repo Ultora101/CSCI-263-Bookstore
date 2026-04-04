@@ -133,6 +133,7 @@ public class UserTest {
         assertFalse(user.isActive());
     }
 
+    // Tesing toString
     @Test
     void toString_shoudlContainIdAndUsername() {
         String result = user.toString();

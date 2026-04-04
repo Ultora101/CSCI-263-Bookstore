@@ -15,7 +15,8 @@ public class Book {
     private String title;
     private String author;
     private String genre;
-    private String isbn; // This is the International Standard book number. better identification
+    private String isbn; // This is the International Standard book number. better identification. always
+                         // 13 numbers
     private BigDecimal price;
     private int stockQuantity;
     private String description;
