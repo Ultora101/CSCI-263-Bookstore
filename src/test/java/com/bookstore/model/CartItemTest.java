@@ -37,4 +37,83 @@ public class CartItemTest {
     }
 
     // Testing Getters and Setters
+    @Test
+    void setBookId_shouldUpdateBookId() {
+        cartItem.setBookId(40);
+        assertEquals(40, cartItem.getBookId());
+    }
+
+    @Test
+    void setTitle_shouldUpdateTitle() {
+        cartItem.setTitle("New Title");
+        assertEquals("New Title", cartItem.getTitle());
+    }
+
+    @Test
+    void setAuthor_shouldUpdateAuthor() {
+        cartItem.setAuthor("Funny Name");
+        assertEquals("Funny Name", cartItem.getAuthor());
+    }
+
+    @Test
+    void setPrice_shouldUpdatePrice() {
+        cartItem.setPrice(new BigDecimal("50.99"));
+        assertEquals(new BigDecimal("50.99"), cartItem.getPrice());
+    }
+
+    @Test
+    void setQuantity_shouldUpdateQuantity() {
+        cartItem.setQuantity(2);
+        assertEquals(2, cartItem.getQuantity());
+    }
+
+    // Testing getSubtotal
+    @Test
+    void getSubtotal_shouldReturnCorrectValue_whenPriceAndQuantityAreNormal() {
+        cartItem.setPrice(new BigDecimal("19.99"));
+        cartItem.setQuantity(3);
+        BigDecimal result = cartItem.getSubtotal();
+        assertEquals(0, result.compareTo(new BigDecimal("59.97")));
+    }
+
+    @Test
+    void getSubtotal_shouldReturnPrice_whenQuantityIsOne() {
+        cartItem.setPrice(new BigDecimal("19.99"));
+        cartItem.setQuantity(1);
+        BigDecimal result = cartItem.getSubtotal();
+        assertEquals(0, result.compareTo(new BigDecimal("19.99")));
+    }
+
+    @Test
+    void getSubtotal_shouldReturnZero_whenQuantityIsZero() {
+        cartItem.setPrice(new BigDecimal("19.99"));
+        cartItem.setQuantity(0);
+        BigDecimal result = cartItem.getSubtotal();
+        assertEquals(0, result.compareTo(new BigDecimal("0")));
+    }
+
+    @Test
+    void getSubtotal_shouldThrowException_whenPriceIsNull() {
+        cartItem.setPrice(null);
+        assertThrows(NullPointerException.class, () -> cartItem.getSubtotal());
+    }
+
+    // Testing toString method
+    @Test
+    void toString_shouldContainTitle() {
+        String result = cartItem.toString();
+        assertTrue(result.contains("Test Title"));
+    }
+
+    @Test
+    void tostring_shouldContainQuantity() {
+        String result = cartItem.toString();
+        assertTrue(result.contains("5"));
+    }
+
+    @Test
+    void toString_shouldContainSubtotal() {
+        String result = cartItem.toString();
+        assertTrue(result.contains("99.95")); // 19.99 x 5
+    }
 }

@@ -81,8 +81,8 @@ public class BookTest {
 
     @Test
     void setPrice_shouldUpdatePrice() {
-        book.setPrice(new BigDecimal(15.00));
-        assertEquals(new BigDecimal(15.00), book.getPrice());
+        book.setPrice(new BigDecimal("15.00"));
+        assertEquals(new BigDecimal("15.00"), book.getPrice());
     }
 
     @Test
