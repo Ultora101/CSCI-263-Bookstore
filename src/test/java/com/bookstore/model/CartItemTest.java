@@ -106,7 +106,7 @@ public class CartItemTest {
     }
 
     @Test
-    void tostring_shouldContainQuantity() {
+    void toString_shouldContainQuantity() {
         String result = cartItem.toString();
         assertTrue(result.contains("5"));
     }
