@@ -89,7 +89,7 @@ public class AuthService {
         String hash = BCrypt.withDefaults().hashToString(12, password.toCharArray());
         User newUser = new User();
         newUser.setUsername(username);
-        newUser.setPasswordHash(password);
+        newUser.setPasswordHash(hash);
         newUser.setEmail(email);
         newUser.setFullName(fullName);
         newUser.setRole(User.Role.CUSTOMER);
