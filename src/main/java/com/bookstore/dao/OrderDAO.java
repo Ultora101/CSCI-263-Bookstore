@@ -24,7 +24,7 @@ public class OrderDAO {
     private static final Logger logger = LoggerFactory.getLogger(OrderDAO.class);
     private final DatabaseManager dbManager;
 
-    private OrderDAO() {
+    public OrderDAO() {
         this.dbManager = DatabaseManager.getInstance();
     }
 
