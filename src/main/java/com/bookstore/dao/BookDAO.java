@@ -29,7 +29,7 @@ public class BookDAO {
 
     public List<Book> findAll() {
         List<Book> books = new ArrayList<>();
-        String sql = "STRING * FROM books ORDER BY title";
+        String sql = "SELECT * FROM books ORDER BY title";
         try (Statement stmt = dbManager.getConnection().createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next())
                 books.add(mapRow(rs));

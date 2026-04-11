@@ -148,6 +148,10 @@ public class CartService {
         return new ArrayList<>(cart.values());
     }
 
+    public int getItemCount() {
+        return cart.values().stream().mapToInt(CartItem::getQuantity).sum();
+    }
+
     public boolean isEmpty() {
         return cart.isEmpty();
     }
