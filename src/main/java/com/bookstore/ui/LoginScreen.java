@@ -9,7 +9,6 @@ import javafx.geometry.*;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 /**
@@ -112,7 +111,7 @@ public class LoginScreen {
         loginBtn.setMaxWidth(Double.MAX_VALUE);
         loginBtn.setPrefHeight(44);
 
-        Label orLabel = new Label("— Don't have an account? —");
+        Label orLabel = new Label("Don't have an account?");
         orLabel.setStyle(StyleManager.mutedLabel());
 
         Button registerBtn = new Button("Create Account");
@@ -184,7 +183,7 @@ public class LoginScreen {
         registerBtn.setMaxWidth(Double.MAX_VALUE);
         registerBtn.setPrefHeight(44);
 
-        Button backBtn = new Button("← Back to Login");
+        Button backBtn = new Button("Back to Login");
         backBtn.setStyle(StyleManager.outlineButton());
         backBtn.setMaxWidth(Double.MAX_VALUE);
 

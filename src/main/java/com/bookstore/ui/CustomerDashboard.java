@@ -130,7 +130,6 @@ public class CustomerDashboard {
     }
 
     private Button createCartNavButton() {
-        StackPane iconPane = new StackPane();
         Label txt = new Label("Cart");
         txt.setStyle("-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 14px;");
         cartBadge = new Label(String.valueOf(cartService.getItemCount()));

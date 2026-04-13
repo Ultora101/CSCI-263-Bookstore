@@ -116,7 +116,7 @@ public class UserDAO {
      * Updates an exsidting user's details
      */
     public void update(User user) {
-        String sql = "UPDATE users SET email=?, full_name=?, role=?, status=?, WHERE id=?";
+        String sql = "UPDATE users SET email=?, full_name=?, role=?, status=? WHERE id=?";
         try (PreparedStatement ps = dbManager.getConnection().prepareStatement(sql)) {
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getFullName());
@@ -158,6 +158,21 @@ public class UserDAO {
             ps.executeUpdate();
         } catch (SQLException e) {
             logger.warn("Could not update last login for user: {}", userId, e);
+        }
+    }
+
+    /**
+     * Deletes a blocked user
+     */
+    public void delete(int userId) {
+        String sql = "DELETE FROM users WHERE id=?";
+        try (PreparedStatement ps = dbManager.getConnection().prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.executeUpdate();
+            logger.info("Deleted user id: {}", userId);
+        } catch (SQLException e) {
+            logger.error("Error deleting user: {}", userId, e);
+            throw new DatabaseException("Failed to delete user", e);
         }
     }
 

@@ -111,7 +111,7 @@ public class CatalogView {
         genreFilter.setStyle("-fx-font-size: 13px;");
         genreFilter.setPrefHeight(38);
 
-        Button clearBtn = new Button("✕ Clear");
+        Button clearBtn = new Button("Clear");
         clearBtn.setStyle(StyleManager.outlineButton() + " -fx-padding: 8 14;");
         clearBtn.setPrefHeight(38);
 
@@ -174,7 +174,7 @@ public class CatalogView {
         StackPane cover = new StackPane();
         cover.setPrefHeight(120);
         cover.setStyle("-fx-background-color: " + getGenreColor(book.getGenre()) + "; -fx-background-radius: 8;");
-        Label coverIcon = new Label(getGenreEmoji(book.getGenre()));
+        Label coverIcon = new Label(book.getGenre().substring(0, 1).toUpperCase());
         coverIcon.setStyle("-fx-font-size: 40px;");
         cover.getChildren().add(coverIcon);
 
@@ -247,7 +247,7 @@ public class CatalogView {
         StackPane cover = new StackPane();
         cover.setPrefHeight(100);
         cover.setStyle("-fx-background-color: " + getGenreColor(book.getGenre()) + "; -fx-background-radius: 8;");
-        Label coverIcon = new Label(getGenreEmoji(book.getGenre()));
+        Label coverIcon = new Label(book.getGenre().substring(0, 1).toUpperCase());
         coverIcon.setStyle("-fx-font-size: 48px;");
         cover.getChildren().add(coverIcon);
 
@@ -272,7 +272,7 @@ public class CatalogView {
         descLbl.setWrapText(true);
         descLbl.setStyle("-fx-text-fill: " + StyleManager.TEXT_MUTED + ";");
 
-        Button addBtn = new Button("🛒 Add to Cart");
+        Button addBtn = new Button("Add to Cart");
         addBtn.setStyle(StyleManager.primaryButton());
         addBtn.setDisable(!book.isAvailable());
         addBtn.setOnAction(e -> {
@@ -303,22 +303,6 @@ public class CatalogView {
             case "self-help" -> "#E0F7FA";
             case "memoir" -> "#FFF8E1";
             default -> "#ECEFF1";
-        };
-    }
-
-    private String getGenreEmoji(String genre) {
-        return switch (genre.toLowerCase()) {
-            case "fantasy" -> "🧙";
-            case "science fiction" -> "🚀";
-            case "thriller" -> "🔪";
-            case "romance" -> "💕";
-            case "non-fiction / history", "non-fiction" -> "📜";
-            case "self-help" -> "💡";
-            case "memoir" -> "✍️";
-            case "classic fiction" -> "🎭";
-            case "dystopian fiction" -> "🌑";
-            case "adventure fiction" -> "🗺️";
-            default -> "";
         };
     }
 

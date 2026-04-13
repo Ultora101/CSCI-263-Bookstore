@@ -114,12 +114,16 @@ public class UserManagementView {
         actionsCol.setCellFactory(c -> new TableCell<>() {
             private final Button blockBtn = new Button();
             private final Button resetBtn = new Button("Reset PW");
+            private final Button deleteBtn = new Button("Delete");
             {
                 resetBtn.setStyle("-fx-background-color: " + StyleManager.WARNING + "; -fx-text-fill: white; " +
                         "-fx-font-size: 11px; -fx-padding: 5 10; -fx-cursor: hand; -fx-background-radius: 4;");
                 blockBtn.setStyle(StyleManager.dangerButton() + " -fx-font-size: 11px; -fx-padding: 5 10;");
+                deleteBtn.setStyle(StyleManager.dangerButton() +
+                        "-fx-font-size: 11px; -fx-padding: 5 10;");
                 blockBtn.setOnAction(e -> handleBlockToggle(getTableView().getItems().get(getIndex())));
                 resetBtn.setOnAction(e -> handlePasswordReset(getTableView().getItems().get(getIndex())));
+                deleteBtn.setOnAction(e -> handleDelete(getTableView().getItems().get(getIndex())));
             }
 
             @Override
@@ -134,7 +138,8 @@ public class UserManagementView {
                 blockBtn.setText(user.getStatus() == User.Status.ACTIVE ? "Block" : "Unblock");
                 blockBtn.setDisable(isSelf || user.isAdmin());
                 resetBtn.setDisable(isSelf);
-                HBox box = new HBox(6, blockBtn, resetBtn);
+                deleteBtn.setDisable(isSelf || user.isAdmin() || user.getStatus() != User.Status.BLOCKED);
+                HBox box = new HBox(6, blockBtn, resetBtn, deleteBtn);
                 box.setAlignment(Pos.CENTER);
                 setGraphic(box);
             }
@@ -180,6 +185,19 @@ public class UserManagementView {
                 AlertUtil.showError("Error", ex.getMessage());
             }
         });
+    }
+
+    private void handleDelete(User user) {
+        if (AlertUtil.showConfirmation("Confirm Delete",
+                "Permanently delete user '" + user.getUsername() + "'? This cannot be undone.")) {
+            try {
+                userService.deleteUser(user.getId());
+                loadUsers();
+                AlertUtil.showSuccess("User '" + user.getUsername() + "' has been deleted.");
+            } catch (Exception ex) {
+                AlertUtil.showError("Error", ex.getMessage());
+            }
+        }
     }
 
     private TableColumn<User, String> col(String name, double width, java.util.function.Function<User, String> fn) {

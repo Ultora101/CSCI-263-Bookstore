@@ -40,7 +40,7 @@ public class OrderManagementView {
         title.setStyle(StyleManager.pageTitle());
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        Button refreshBtn = new Button("↻ Refresh");
+        Button refreshBtn = new Button("Refresh");
         refreshBtn.setStyle(StyleManager.outlineButton() + " -fx-padding: 8 16;");
         refreshBtn.setOnAction(e -> loadOrders());
         header.getChildren().addAll(title, spacer, refreshBtn);

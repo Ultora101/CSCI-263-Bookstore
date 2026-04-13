@@ -1,11 +1,6 @@
 package com.bookstore.util;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 /**
  * Centralized styling utility for consistent UI theming.

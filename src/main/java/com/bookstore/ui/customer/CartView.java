@@ -166,7 +166,7 @@ public class CartView {
         HBox.setHgrow(sp, Priority.ALWAYS);
         totalRow.getChildren().addAll(totalLbl, sp, totalAmt);
 
-        Button checkoutBtn = new Button("Proceed to Checkout →");
+        Button checkoutBtn = new Button("Proceed to Checkout");
         checkoutBtn.setStyle(StyleManager.successButton());
         checkoutBtn.setMaxWidth(Double.MAX_VALUE);
         checkoutBtn.setPrefHeight(46);

@@ -92,7 +92,7 @@ public class OrderHistoryView {
         VBox itemsList = new VBox(4);
         for (OrderItem item : order.getItems()) {
             HBox itemRow = new HBox(8);
-            Label itemName = new Label("• " + item.getBookTitle() + " x " + item.getQuantity());
+            Label itemName = new Label(item.getBookTitle() + " x " + item.getQuantity());
             itemName.setStyle("-fx-font-size: 13px;");
             Region sp2 = new Region();
             HBox.setHgrow(sp2, Priority.ALWAYS);

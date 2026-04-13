@@ -53,12 +53,12 @@ public class BookManagementView {
         searchField.setPrefHeight(38);
         searchField.textProperty().addListener((obs, o, n) -> filterBooks(n));
 
-        Button addBtn = new Button("+ Add Book");
+        Button addBtn = new Button("Add Book");
         addBtn.setStyle(StyleManager.successButton());
         addBtn.setPrefHeight(38);
         addBtn.setOnAction(e -> showBookDialog(null));
 
-        Button refreshBtn = new Button("↻ Refresh");
+        Button refreshBtn = new Button("Refresh");
         refreshBtn.setStyle(StyleManager.outlineButton() + " -fx-padding: 8 16;");
         refreshBtn.setPrefHeight(38);
         refreshBtn.setOnAction(e -> loadBooks());

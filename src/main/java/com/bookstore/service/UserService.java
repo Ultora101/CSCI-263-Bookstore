@@ -52,4 +52,14 @@ public class UserService {
         userDAO.update(user);
         logger.info("User {} promoted to ADMIN", userId);
     }
+
+    public void deleteUser(int userId) {
+        User user = getUserByID(userId);
+        if (user.isAdmin())
+            throw new IllegalStateException("Cannot delete an admin account");
+        if (user.getStatus() != User.Status.BLOCKED)
+            throw new IllegalStateException("Only blocked users can be deleted");
+        userDAO.delete(userId);
+        logger.info("User {} deleted", userId);
+    }
 }
